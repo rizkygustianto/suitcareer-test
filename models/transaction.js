@@ -11,10 +11,14 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      Transaction.belongsTo(models.Ticket, {foreignKey: 'ticketId'})
+      Transaction.belongsTo(models.Event, {foreignKey: 'eventId'})
     }
   };
   Transaction.init({
-    ticket_qty: DataTypes.INTEGER
+    ticket_qty: DataTypes.INTEGER,
+    ticketId: DataTypes.INTEGER,
+    eventId: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'Transaction',
